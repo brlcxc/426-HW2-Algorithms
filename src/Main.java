@@ -2,7 +2,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("phi(8000) = " + phi(8000));
         System.out.println("phi(98803519) = " + phi(98803519));
-
         System.out.println("GCD(10012012,2314213) = " + euclid(10012012,2314213));
         System.out.println("GCD(28176412,29108188) = " + euclid(28176412,29108188));
         System.out.println("GCD(38172,23812188) = " + euclid(38172,23812188));
@@ -18,18 +17,34 @@ public class Main {
         return euclid(y, x % y);
     }
 
-    public static int multiplicativeInverse(int m, int n){
-        //a multiplicative inverse cannot exist if gcd(m, n) = 1
-        if (euclid(m, n) != 1){
+    public static int multiplicativeInverse(int m, int n) {
+        // Use the extended Euclidean algorithm to calculate gcd and the coefficients
+        int[] result = extendedEuclid(m, n);
+        int gcd = result[0];
+        int x = result[1]; // x is the multiplicative inverse
+
+        // The multiplicative inverse only exists if gcd(m, n) == 1
+        if (gcd != 1) {
             return -1;
         }
-        //range 0 to n-1
-        for (int z = 0; z < n; z++){
-            if (m * z % n == 1){
-                return z;
-            }
+
+        return (x % n + n) % n;
+    }
+
+    private static int[] extendedEuclid(int a, int b) {
+        if (b == 0) {
+            return new int[]{a, 1, 0}; // gcd(a, 0) = a; coefficients are (1, 0)
         }
-        return -1;
+        int[] result = extendedEuclid(b, a % b);
+        int gcd = result[0];
+        int x1 = result[1];
+        int y1 = result[2];
+
+        // Update x and y using the results of the recursive call
+        int x = y1;
+        int y = x1 - (a / b) * y1;
+
+        return new int[]{gcd, x, y};
     }
     public static String inverseOutput(int inverse){
         //a way to better output if an inverse does not exist
