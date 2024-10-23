@@ -2,9 +2,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("phi(8000) = " + phi(8000));
         System.out.println("phi(98803519) = " + phi(98803519));
-        System.out.println("GCD(10012012,2314213) = " + euclid(10012012,2314213));
-        System.out.println("GCD(28176412,29108188) = " + euclid(28176412,29108188));
-        System.out.println("GCD(38172,23812188) = " + euclid(38172,23812188));
+        System.out.println("GCD(10012012,2314213) = " + extendedEuclid(10012012,2314213));
+        System.out.println("GCD(28176412,29108188) = " + extendedEuclid(28176412,29108188));
+        System.out.println("GCD(38172,23812188) = " + extendedEuclid(38172,23812188));
         System.out.println("The multiplicative inverse of 12091 mod 24123123 = " + inverseOutput(multiplicativeInverse(12091, 24123123)));
         System.out.println("The multiplicative inverse of 28173928 mod 129182771 = " + inverseOutput(multiplicativeInverse(28173928, 129182771)));
     }
