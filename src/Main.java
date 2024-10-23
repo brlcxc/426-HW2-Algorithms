@@ -1,5 +1,8 @@
 public class Main {
     public static void main(String[] args) {
+        System.out.println("phi(8000) = " + phi(8000));
+        System.out.println("phi(98803519) = " + phi(98803519));
+
         System.out.println("GCD(10012012,2314213) = " + euclid(10012012,2314213));
         System.out.println("GCD(28176412,29108188) = " + euclid(28176412,29108188));
         System.out.println("GCD(38172,23812188) = " + euclid(38172,23812188));
@@ -34,5 +37,13 @@ public class Main {
             return Integer.toString(inverse);
         }
         return "does not exist \"gcd(m,n) = 1\"";
+    }
+    public static int phi(int n) {
+        int result = 1;
+        for (int i = 2; i < n; i++)
+            if (euclid(i, n) == 1){
+                result++;
+            }
+        return result;
     }
 }
